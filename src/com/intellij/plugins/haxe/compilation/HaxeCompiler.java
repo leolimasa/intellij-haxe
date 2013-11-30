@@ -37,7 +37,6 @@ import com.intellij.plugins.haxe.ide.module.HaxeModuleSettings;
 import com.intellij.plugins.haxe.ide.module.HaxeModuleType;
 import com.intellij.plugins.haxe.module.HaxeModuleSettingsBase;
 import com.intellij.plugins.haxe.runner.HaxeApplicationConfiguration;
-import com.intellij.plugins.haxe.runner.debugger.HaxeDebugRunner;
 import com.intellij.plugins.haxe.util.HaxeCommonCompilerUtil;
 import com.intellij.util.PathUtil;
 import org.jetbrains.annotations.NotNull;
@@ -123,8 +122,9 @@ public class HaxeCompiler implements SourceProcessingCompiler {
 
   private static boolean compileModule(final CompileContext context, @NotNull final Module module) {
     final HaxeModuleSettings settings = HaxeModuleSettings.getInstance(module);
-    final boolean isDebug = ExecutorRegistry.getInstance()
-      .isStarting(context.getProject(), DefaultDebugExecutor.EXECUTOR_ID, HaxeDebugRunner.HAXE_DEBUG_RUNNER_ID);
+    /*final boolean isDebug = ExecutorRegistry.getInstance()
+      .isStarting(context.getProject(), DefaultDebugExecutor.EXECUTOR_ID, HaxeDebugRunner.HAXE_DEBUG_RUNNER_ID);*/
+    final boolean isDebug = false;
     final ModuleRootManager moduleRootManager = ModuleRootManager.getInstance(module);
     final Sdk sdk = moduleRootManager.getSdk();
     if (sdk == null) {

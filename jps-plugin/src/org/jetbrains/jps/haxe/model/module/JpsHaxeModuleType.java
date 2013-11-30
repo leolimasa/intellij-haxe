@@ -21,13 +21,14 @@ import org.jdom.Element;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.jps.haxe.model.module.impl.JpsHaxeModuleSettingsImpl;
+import org.jetbrains.jps.model.JpsElementChildRole;
 import org.jetbrains.jps.model.module.JpsModuleType;
 import org.jetbrains.jps.model.serialization.module.JpsModulePropertiesSerializer;
 
 /**
  * @author: Fedor.Korotkov
  */
-public class JpsHaxeModuleType extends JpsModuleType<JpsHaxeModuleSettings> {
+public class JpsHaxeModuleType implements JpsModuleType<JpsHaxeModuleSettings> {
   public static final JpsHaxeModuleType INSTANCE = new JpsHaxeModuleType();
   private static final String ID = "HAXE_MODULE";
 
@@ -53,5 +54,11 @@ public class JpsHaxeModuleType extends JpsModuleType<JpsHaxeModuleSettings> {
         XmlSerializer.serializeInto(settings.getProperties(), componentElement);
       }
     };
+  }
+
+  @NotNull
+  @Override
+  public JpsElementChildRole<JpsHaxeModuleSettings> getPropertiesRole() {
+    return null;
   }
 }

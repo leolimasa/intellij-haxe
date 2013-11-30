@@ -15,7 +15,6 @@
  */
 package com.intellij.plugins.haxe.runner.debugger;
 
-import com.intellij.lang.javascript.flex.debug.FlexBreakpointsHandler;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.plugins.haxe.HaxeBundle;
@@ -36,12 +35,6 @@ import java.util.List;
  * @author: Fedor.Korotkov
  */
 public class HaxeBreakpointType extends XLineBreakpointType<XBreakpointProperties> {
-
-  public static class HaxeBreakpointTypeProvider implements FlexBreakpointsHandler.BreakpointTypeProvider {
-    public Class<? extends XBreakpointType<XLineBreakpoint<XBreakpointProperties>, ?>> getBreakpointTypeClass() {
-      return HaxeBreakpointType.class;
-    }
-  }
 
   private final XDebuggerEditorsProvider myEditorProvider = new HaxeDebuggerEditorsProvider();
 

@@ -94,28 +94,8 @@ public class HaxeDebugRunner extends DefaultProgramRunner {
     }
     // flash only
 
-    final IdeaPluginDescriptor plugin = PluginManager.getPlugin(PluginId.getId("com.intellij.flex"));
-    if (plugin == null) {
-      throw new ExecutionException(HaxeBundle.message("install.flex.plugin"));
-    }
-    if (!plugin.isEnabled()) {
-      throw new ExecutionException(HaxeBundle.message("enable.flex.plugin"));
-    }
+    throw new ExecutionException("Flash debugging not supported.");
 
-    String flexSdkName = settings.getFlexSdkName();
-    if (StringUtil.isEmpty(flexSdkName)) {
-      throw new ExecutionException(HaxeBundle.message("flex.sdk.not.specified"));
-    }
-
-    if (settings.isUseNmmlToBuild() && settings.getNmeTarget() == NMETarget.FLASH) {
-      return HaxeFlashDebuggingUtil.getNMEDescriptor(this, module, contentToReuse, env, executor, flexSdkName);
-    }
-
-    if (settings.isUseOpenFLToBuild() && settings.getOpenFLTarget() == OpenFLTarget.FLASH) {
-      return HaxeFlashDebuggingUtil.getOpenFLDescriptor(this, module, contentToReuse, env, executor, flexSdkName);
-    }
-
-    return HaxeFlashDebuggingUtil.getDescriptor(this, module, contentToReuse, env, configuration.getCustomFileToLaunchPath(), flexSdkName);
   }
 
   private RunContentDescriptor runHXCPP(Project project,
